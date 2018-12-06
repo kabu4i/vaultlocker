@@ -54,8 +54,8 @@ def luks_format(key, device, uuid):
         'luksFormat',
         device,
     ]
-    subprocess.check_output(command,
-                            input=key.encode('UTF-8'))
+    checkout = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    checkout.communicate(key.encode('UTF-8'))
 
 
 def luks_open(key, uuid):
@@ -81,8 +81,8 @@ def luks_open(key, uuid):
         '--type',
         'luks',
     ]
-    subprocess.check_output(command,
-                            input=key.encode('UTF-8'))
+    checkout = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    checkout.communicate(key.encode('UTF-8'))
     return handle
 
 

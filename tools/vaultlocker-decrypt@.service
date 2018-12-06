@@ -8,7 +8,7 @@ Before=network-online.target
 [Service]
 Type=oneshot
 KillMode=none
-Environment=VAULTLOCKER_TIMEOUT=10000
+EnvironmentFile=-/etc/sysconfig/vaultlocker
 ExecStart=/bin/sh -c 'vaultlocker --retry $VAULTLOCKER_TIMEOUT decrypt %i'
 TimeoutSec=0
 
